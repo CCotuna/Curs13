@@ -9,11 +9,15 @@ import { ref } from "vue";
 const isNewMode = ref(false);
 
 import { onMounted } from 'vue';
+import axios from "axios"
 
-onMounted(() => {
-    if (localStorage.getItem('lists')) {
-        tasksStore.lists = JSON.parse(localStorage.getItem('lists'))
-    }
+onMounted(async () => {
+    // if (localStorage.getItem('lists')) {
+    //     tasksStore.lists = JSON.parse(localStorage.getItem('lists'))
+    // }
+    const tasks = await axios.get("http://localhost:3000/tasks")
+    console.log(tasks.data)
+    tasksStore.lists = tasks.data;
 })
 
 </script>
