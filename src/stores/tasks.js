@@ -37,6 +37,16 @@ export const useTasksStore = defineStore("tasks", {
     deleteTask(taskId) {
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
       this.lists.splice(taskIndex, 1);
+
+      axios.delete(
+        "http://localhost:3000/tasks",
+        { taskId: taskIndex },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       localStorage.setItem("lists", JSON.stringify(this.lists));
     },
   },
