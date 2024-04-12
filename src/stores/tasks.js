@@ -27,11 +27,30 @@ export const useTasksStore = defineStore("tasks", {
     editTask(taskId, value) {
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
       this.lists[taskIndex].name = value;
+      axios.put(
+        "http://localhost:3000/tasks",
+        { taskId, value },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       localStorage.setItem("lists", JSON.stringify(this.lists));
     },
     toggleFavorite(taskId) {
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
       this.lists[taskIndex].favorite = !this.lists[taskIndex].favorite;
+
+      axios.put(
+        "http://localhost:3000/tasks/favorite",
+        { taskId },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       localStorage.setItem("lists", JSON.stringify(this.lists));
     },
     deleteTask(taskId) {
