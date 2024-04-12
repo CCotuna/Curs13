@@ -38,15 +38,12 @@ export const useTasksStore = defineStore("tasks", {
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
       this.lists.splice(taskIndex, 1);
 
-      axios.delete(
-        "http://localhost:3000/tasks",
-        { taskId: taskIndex },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      axios.delete("http://localhost:3000/tasks", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: { taskId },
+      });
       localStorage.setItem("lists", JSON.stringify(this.lists));
     },
   },
