@@ -54,6 +54,7 @@ export const useTasksStore = defineStore("tasks", {
       localStorage.setItem("lists", JSON.stringify(this.lists));
     },
     deleteTask(taskId) {
+      console.log(taskId, "aici e taskIDDDDDD");
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
       this.lists.splice(taskIndex, 1);
 
