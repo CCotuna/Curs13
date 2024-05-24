@@ -11,6 +11,7 @@ import { useTasksStore } from "@/stores/tasks.js"
 const tasksStore = useTasksStore()
 
 function deleteTask() {
+    console.log("Aici e props.taskId", props.taskId)
     tasksStore.deleteTask(props.taskId);
 }
 
