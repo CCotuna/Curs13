@@ -42,6 +42,7 @@ export const useTasksStore = defineStore("tasks", {
         }
       );
       localStorage.setItem("lists", JSON.stringify(this.lists));
+      ws.send(JSON.stringify(this.lists));
     },
     toggleFavorite(taskId) {
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
@@ -57,6 +58,7 @@ export const useTasksStore = defineStore("tasks", {
         }
       );
       localStorage.setItem("lists", JSON.stringify(this.lists));
+      ws.send(JSON.stringify(this.lists));
     },
     deleteTask(taskId) {
       console.log(taskId, "aici e taskIDDDDDD");
@@ -70,6 +72,7 @@ export const useTasksStore = defineStore("tasks", {
         data: { taskId },
       });
       localStorage.setItem("lists", JSON.stringify(this.lists));
+      ws.send(JSON.stringify(this.lists));
     },
   },
 });
