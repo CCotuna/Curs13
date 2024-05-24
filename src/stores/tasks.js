@@ -14,7 +14,7 @@ export const useTasksStore = defineStore("tasks", {
       const newTask = {
         name,
         favorite,
-        ClientId: 4
+        ClientId: 4,
       };
       this.lists.push(newTask);
 
@@ -23,7 +23,7 @@ export const useTasksStore = defineStore("tasks", {
           "Content-Type": "application/json",
         },
       });
-      this.lists[this.lists.length -1].id = taskRow.data.id;
+      this.lists[this.lists.length - 1].id = taskRow.data.id;
 
       localStorage.setItem("lists", JSON.stringify(this.lists));
 
