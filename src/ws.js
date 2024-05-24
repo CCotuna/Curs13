@@ -1,4 +1,4 @@
-import { useTasksStore } from "@/stores/tasks.js";
+import { useTasksStore } from "./stores/tasks.js";
 
 export const ws = new WebSocket("ws://localhost:8080");
 
@@ -7,7 +7,8 @@ ws.onopen = () => {
 };
 
 ws.onmessage = ws => {
-  //   const taskStore = useTasksStore();
-  //   taskStore.lists = JSON.parse(ws.data);
+  //  const taskStore = useTasksStore();
+  //  taskStore.lists = JSON.parse(ws.data);
+
   console.log("Message from server:", ws.data);
 };

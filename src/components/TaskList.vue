@@ -18,12 +18,14 @@ onMounted(async () => {
     const tasks = await axios.get("http://localhost:3000/tasks")
     console.log(tasks.data)
     tasksStore.lists = tasks.data;
+
+    document.getElementById("test").scrollIntoView()
 })
 
 </script>
 
 <template>
-    <div>
+    <div id="test">
         <TaskLine class="my-3" v-for="task of tasksStore.lists" :task="task" />
         <TaskLine class="my-3" v-if="isNewMode" :isNewMode="true" @newTaskAdded="isNewMode = false" />
     </div>
