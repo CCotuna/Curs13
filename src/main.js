@@ -13,6 +13,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 app.use(createPinia());
 app.use(router);
 
+import { ws } from "@/ws.js";
+
 app.mount("#app");
 
 // const xhttp = new XMLHttpRequest();

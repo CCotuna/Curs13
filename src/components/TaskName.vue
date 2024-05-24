@@ -14,7 +14,6 @@ const props = defineProps({
 });
 
 import { useTasksStore } from "@/stores/tasks.js"
-import { v4 as uuidv4 } from 'uuid';
 
 const tasksStore = useTasksStore()
 let isAdded = false;
@@ -22,7 +21,7 @@ function addNewTask(event) {
     if (!isAdded && event.target.value.length) {
         isAdded = true;
         if (props.isNewMode) {
-            tasksStore.addTask(uuidv4(), event.target.value, false);
+            tasksStore.addTask(event.target.value, false);
             emits("newTaskAdded");
         } else {
             tasksStore.editTask(props.task.id, event.target.value);

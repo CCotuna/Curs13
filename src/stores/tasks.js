@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
+import { ws } from "@/ws.js";
+
 export const useTasksStore = defineStore("tasks", {
   state: () => {
     return {
@@ -8,21 +10,24 @@ export const useTasksStore = defineStore("tasks", {
     };
   },
   actions: {
-    addTask(id, name, favorite) {
+    async addTask(name, favorite) {
       const newTask = {
-        id,
         name,
         favorite,
       };
       this.lists.push(newTask);
-
-      axios.post("http://localhost:3000/tasks", newTask, {
+      console.log(this.lists, "aici e lista din pinia");
+      const taskRow = await axios.post("http://localhost:3000/tasks", newTask, {
         headers: {
           "Content-Type": "application/json",
         },
       });
 
+      this.lists[this.lists.length - 1].id = taskRow.data.id;
+
       localStorage.setItem("lists", JSON.stringify(this.lists));
+
+      ws.send(JSON.stringify(this.lists));
     },
     editTask(taskId, value) {
       const taskIndex = this.lists.findIndex(task => task.id === taskId);
